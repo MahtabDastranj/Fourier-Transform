@@ -77,7 +77,7 @@ print('The dot product is ', dp)
 #if we try 4.35 dp is gonna be larger.
 ampl1 = ampl2 = 2
 phas1 = phas2 = np.pi/2
-#The phase shift definitely affects the dot product.
+##The phase shift definitely affects the dot product.
 #Yet there is one feature of the dot product that the phase shift does not affect, which is the distance to the origin.
 #That distance remains constant while the phase shifts.
 # Because the similarity between the complex sine wave and the signal stays the same.
@@ -85,11 +85,11 @@ phas1 = phas2 = np.pi/2
 # Distance to the origin is a function of both of those parts.
 #Sine waves at different frequencies are orthogonal, meaning their dot product is zero.
 #That means the Fourier transform has an orthogonal basis set, which is one of the great features of the FT.
-sinewave1 = ampl1 * np.sin(2* np.pi * freq * time + phas1)
-sinewave2 = ampl2 * np.sin(2* np.pi * freq * time + phas2)
+sinewave1 = ampl1 * np.sin(2 * np.pi * freq * time + phas1)
+sinewave2 = ampl2 * np.sin(2 * np.pi * freq * time + phas2)
 dp = np.dot(sinewave1, sinewave2)
 print('dot = ', dp)
-theta = 0* np.pi/4      #phase of signal
+theta = 0 * np.pi/4      #phase of signal
 srate = 1000
 time = np.arange(-1., 1., 1./srate)
 sinew = np.sin(2*np.pi * 5 * time + theta)
