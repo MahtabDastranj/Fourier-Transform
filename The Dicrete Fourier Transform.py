@@ -184,13 +184,37 @@ plt.show()
 # averaging fourier coefficient
 ntrials = 100
 srate = 200
-time = np.arange(0, srate, 1/srate)
+time = np.arange(0, 1, 1/srate)
 pnts = len(time)
 data_set = np.zeros((ntrials, pnts))
 for triali in range(ntrials):
-	data_set[triali, :] = np.sin(2 * np.pi * 20 * time + 2 * np.pi * np.random.rand(0, 1))
+	data_set[triali, :] = np.sin(2 * np.pi * 20 * time + 2 * np.pi * np.random.rand())
+	#  change the 2 in phase shift, you'd recognize they become more alike as 2 lowers
 	# rand() picks either 0 or 1
+fig, axs = plt.subplots(2)
 for i in range(ntrials):
-	plt.plot(time, data_set[i, :])
-a = np.array([[1, 2], [3, 4]])
-print(a)
+	axs[0] = plt.plot(time, data_set[i, :])
+axs[0] = plt.plot(time, np.mean(data_set, axis=0), 'k', linewidth=3)
+# The average is lower than each because of the phase differance
+plt.xlabel('Time (sec.)')
+plt.ylabel('Amplitude')
+plt.title('Time domain')
+plt.xlim([0, .1])
+# Get the fourier coefficient
+data_setX = scipy.fftpack.fft(data_set, axis=1)
+hz = np.linspace(0, srate/2, int(pnts/2)+1)
+# averaging option 1: complex Fourier coefficients, then magnitude
+ave1 = 2 * np.abs(np.mean(data_setX, axis=0))
+# averaging option 2: magnitude, then complex Fourier coefficients
+ave2 = np.mean(2 * np.abs(data_setX), axis=0)
+axs[1] = plt.stem(hz, ave1[0:len(hz)], 'ks-', label='Average coefficients', use_line_collection=True)
+axs[1] = plt.stem(hz+.2, ave2[0:len(hz)], 'ro-', label='Average amplitude', use_line_collection=True)
+# We understand that as the phase shift decreases the Average coefficients gets closer to the average amplitute
+# using frequency shift to make the plot identifiable
+plt.xlim([10, 30])
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Amplitude')
+plt.title('Frequency domain')
+plt.legend()
+plt.show()
+# DC reconstruction without careful normalization
