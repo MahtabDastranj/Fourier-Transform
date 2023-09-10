@@ -219,7 +219,7 @@ plt.title('Frequency domain')
 plt.legend()
 plt.tight_layout()
 plt.show()
-# DC reconstruction without careful normalization
+# DC reconstruction with careful normalization
 srate = 1000
 time = np.arange(0., 2., 1/srate)
 pnts = len(time)
