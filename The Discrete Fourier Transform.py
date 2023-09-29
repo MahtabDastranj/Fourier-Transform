@@ -208,8 +208,8 @@ hz = np.linspace(0, srate/2, int(pnts/2)+1)
 ave1 = 2 * np.abs(np.mean(data_setX, axis=0))
 # averaging option 2: magnitude, then complex Fourier coefficients
 ave2 = np.mean(2 * np.abs(data_setX), axis=0)
-axs[1] = plt.stem(hz, ave1[0:len(hz)], 'ks-', label='Average coefficients', use_line_collection=True)
-axs[1] = plt.stem(hz+.2, ave2[0:len(hz)], 'ro-', label='Average amplitude', use_line_collection=True)
+axs[1] = plt.stem(hz, ave1[0:len(hz)], 'ks-', label='Average coefficients')
+axs[1] = plt.stem(hz+.2, ave2[0:len(hz)], 'ro-', label='Average amplitude')
 # We understand that as the phase shift decreases the Average coefficients gets closer to the average amplitude
 # using frequency shift to make the plot identifiable
 plt.xlim([10, 30])
