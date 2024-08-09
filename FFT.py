@@ -1,12 +1,18 @@
 import timeit
+<<<<<<< Updated upstream
 import numpy as np, math, random
 import numpy.matlib
+=======
+
+import numpy as np, math, random
+>>>>>>> Stashed changes
 import matplotlib.pyplot as plt, pylab as pl
 import scipy.fftpack
 from IPython import display
 import time as ttime
 import random
 from mpl_toolkits.mplot3d import Axes3D
+<<<<<<< Updated upstream
 pnts = 1000
 signal = np.random.randn(pnts)
 # timer for "slow" Fourier transform
@@ -93,3 +99,19 @@ plt.ylabel('Amplitude')
 plt.xlim([0, 200])
 plt.title('FFT over time')
 plt.show()
+=======
+# How the FFT works, speed tests
+pnts = 1000
+signal = np.random.randn(pnts)
+# start the timer for "slow" Fourier transform
+tic = timeit.default_timer()
+fourTime = np.arange(range(pnts))/pnts
+fcoefs = np.zeros(len(signal), dtype=complex)
+for fi in range(pnts):
+	csw = np.exp(-1j*2*np.pi*fi*fourTime)
+	fcoefs[fi] = sum(signal, csw)/pnts
+toc = timeit.default_timer()
+t1 = toc - tic
+tic = timeit.default_timer()
+fcoefs = scipy.fftpack
+>>>>>>> Stashed changes
